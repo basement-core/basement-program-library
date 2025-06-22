@@ -114,13 +114,13 @@ The Basement SDK provides TypeScript/JavaScript bindings for interacting with th
 ### Installation
 
 ```bash
-npm install @basement/basement-sdk
+npm install @basement-core/basement-sdk
 ```
 
 ### Basic Usage
 
 ```typescript
-import { init } from "@basement/basement-sdk";
+import { init } from "@basement-core/basement-sdk";
 
 // Initialize connection to Basement Core
 const basement = await init({
@@ -212,7 +212,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 🔗 Links
 
-- **Twitter**: [@basement_so](https://twitter.com/basement_web)
+- **Twitter**: [@basement_web](https://twitter.com/basement_web)
 
 ## 🙏 Acknowledgments
 

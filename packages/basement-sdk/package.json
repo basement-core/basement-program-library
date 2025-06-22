@@ -22,11 +22,11 @@
   "files": [
     "lib"
   ],
-  "gitHead": "83591c7a234ab2dc2f1c4369679e1da2d1815131",
+  "gitHead": "83c1a39303bc3640f283de04cf1d4c0d0d5ae80c",
   "license": "Apache-2.0",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/src/index.js",
-  "name": "@basement/basement-sdk",
+  "name": "@basement-core/basement-sdk",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
@@ -44,5 +44,5 @@
   },
   "sideEffects": false,
   "types": "./lib/types/src/index.d.ts",
-  "version": "0.0.1"
+  "version": "0.0.0"
 }
