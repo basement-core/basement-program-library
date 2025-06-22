@@ -1,0 +1,48 @@
+{
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.0",
+    "@helium/idls": "^0.6.29",
+    "@solana/web3.js": "^1.78.4",
+    "bn.js": "^5.2.0",
+    "bs58": "^4.0.1"
+  },
+  "description": "Basement Smart Contracts",
+  "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
+    "git-format-staged": "^2.1.3",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "exports": {
+    "import": "./lib/esm/src/index.js",
+    "require": "./lib/cjs/index.js",
+    "types": "./lib/types/src/index.d.ts"
+  },
+  "files": [
+    "lib"
+  ],
+  "gitHead": "69c578ebcf2c8587a764884e48295955f54b1f77",
+  "license": "Apache-2.0",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/src/index.js",
+  "name": "@basement/basement-sdk",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/basement-/basement-program-library"
+  },
+  "scripts": {
+    "clean": "npx shx mkdir -p lib && npx shx rm -rf lib",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "package": "npx shx mkdir -p lib/cjs lib/esm",
+    "prebuild": "npm run clean && npm run package",
+    "precommit": "npx git-format-staged -f 'prettier --ignore-unknown --stdin --stdin-filepath \"{}\"' ."
+  },
+  "sideEffects": false,
+  "types": "./lib/types/src/index.d.ts",
+  "version": "0.0.1"
+}

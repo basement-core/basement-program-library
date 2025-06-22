@@ -1,0 +1,40 @@
+{
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.0",
+    "@solana/web3.js": "^1.95.4",
+    "bn.js": "^5.2.0",
+    "borsh": "^0.7.0",
+    "bs58": "^4.0.1"
+  },
+  "description": "Exported idls for Basement SDK",
+  "devDependencies": {
+    "ts-loader": "^9.2.3",
+    "typescript": "^5.2.2"
+  },
+  "exports": {
+    "./*": "./*"
+  },
+  "files": [
+    "lib"
+  ],
+  "gitHead": "69c578ebcf2c8587a764884e48295955f54b1f77",
+  "license": "Apache-2.0",
+  "name": "@basement/idls",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/basement-/basement-program-library"
+  },
+  "scripts": {
+    "clean": "npx shx rm -rf **/tsconfig*.tsbuildinfo && npx shx rm -rf lib && npx shx mkdir -p lib/cjs lib/esm",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "package": "npx shx mkdir -p lib/cjs lib/esm",
+    "prebuild": "npm run clean && npm run package",
+    "precommit": "npx git-format-staged -f 'prettier --ignore-unknown --stdin --stdin-filepath \"{}\"' ."
+  },
+  "sideEffects": false,
+  "version": "0.0.1"
+}

@@ -1,0 +1,209 @@
+<tech_stack>
+- **Framework**: Anchor
+- **Language**: Rust
+- **Testing**: Mocha/Chai with Anchor Test Framework
+- **Client**: TypeScript/JavaScript
+- **IDL**: Anchor IDL
+</tech_stack>
+
+<project_structure>
+programs/
+  ├── [program_name]/          # Main program directory
+  │   ├── src/                 # Program source code
+  │   │   ├── lib.rs          # Program entry point
+  │   │   ├── state/          # Program state definitions
+  │   │   │   └── [model].rs  # State struct definitions
+  │   │   ├── instructions/    # Program instructions
+  │   │   │   └── [ix].rs     # Individual instruction modules
+  │   │   ├── errors.rs       # Custom program errors
+  │   │   └── constants.rs     # Program constants
+  │   └── Cargo.toml          # Rust dependencies
+  └── tests/                   # Integration tests
+      └── [program_name].ts    # Test files
+
+app/
+  ├── src/                     # Client application code
+  │   ├── contexts/           # Program contexts
+  │   ├── instructions/       # Instruction builders
+  │   └── types/             # TypeScript types
+  └── idl/                    # Generated IDL files
+
+### 1. State Layer
+- Define program state using Rust structs with Anchor attributes
+- Implement proper serialization with borsh
+- Use space-efficient types
+- Include proper access control attributes
+- Example state definition:
+
+```rust
+use anchor_lang::prelude::*;
+
+#[account]
+#[derive(Default)]
+pub struct GameState {
+    pub authority: Pubkey,
+    pub player_count: u16,
+    pub game_type: u8,
+    pub is_active: bool,
+    pub created_at: i64,
+}
+
+impl GameState {
+    pub const SPACE: usize = 8 + // discriminator
+        32 +                     // authority
+        2 +                      // player_count
+        1 +                      // game_type
+        1 +                      // is_active
+        8;                       // created_at
+}
+```
+
+### 2. Instruction Layer
+- Organize instructions in separate modules
+- Use proper Anchor attributes for accounts
+- Implement comprehensive validation
+- Follow Solana's account model best practices
+- Example instruction:
+
+```rust
+use anchor_lang::prelude::*;
+use crate::state::GameState;
+
+#[derive(Accounts)]
+pub struct InitializeGame<'info> {
+    #[account(
+        init,
+        payer = authority,
+        space = GameState::SPACE
+    )]
+    pub game: Account<'info, GameState>,
+    
+    #[account(mut)]
+    pub authority: Signer<'info>,
+    
+    pub system_program: Program<'info, System>,
+}
+
+pub fn initialize_game(ctx: Context<InitializeGame>, game_type: u8) -> Result<()> {
+    let game = &mut ctx.accounts.game;
+    game.authority = ctx.accounts.authority.key();
+    game.game_type = game_type;
+    game.is_active = true;
+    game.created_at = Clock::get()?.unix_timestamp;
+    Ok(())
+}
+```
+
+### 3. Error Handling
+- Define custom error types using Anchor's error attribute
+- Use descriptive error messages
+- Include error codes for client handling
+- Example error definitions:
+
+```rust
+use anchor_lang::prelude::*;
+
+#[error_code]
+pub enum GameError {
+    #[msg("Game is not active")]
+    GameNotActive,
+    #[msg("Invalid game type")]
+    InvalidGameType,
+    #[msg("Not authorized")]
+    NotAuthorized,
+    #[msg("Maximum players reached")]
+    MaxPlayersReached,
+}
+```
+
+### 4. Testing Guidelines
+- Write comprehensive tests for all instructions
+- Test both success and failure cases
+- Use proper test fixtures and helpers
+- Example test structure:
+
+```typescript
+import * as anchor from "@project-serum/anchor";
+import { Program } from "@project-serum/anchor";
+import { expect } from "chai";
+
+describe("game_program", () => {
+  const provider = anchor.AnchorProvider.env();
+  anchor.setProvider(provider);
+  
+  const program = anchor.workspace.GameProgram as Program<GameProgram>;
+  
+  it("Initializes game state", async () => {
+    const gameKeypair = anchor.web3.Keypair.generate();
+    
+    await program.methods
+      .initializeGame(1)
+      .accounts({
+        game: gameKeypair.publicKey,
+        authority: provider.wallet.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .signers([gameKeypair])
+      .rpc();
+      
+    const gameState = await program.account.gameState.fetch(gameKeypair.publicKey);
+    expect(gameState.gameType).to.equal(1);
+    expect(gameState.isActive).to.be.true;
+  });
+});
+```
+
+<security_considerations>
+1. Account Validation
+- Always validate account ownership
+- Check account relationships
+- Verify account sizes
+- Validate signers appropriately
+
+2. Data Validation
+- Validate all input parameters
+- Check numerical bounds
+- Verify state transitions
+- Handle edge cases
+
+3. Access Control
+- Implement proper authority checks
+- Use PDA derivation for controlled access
+- Follow principle of least privilege
+
+4. Resource Management
+- Calculate exact space requirements
+- Implement proper rent exemption
+- Handle account closure correctly
+- Manage program data size efficiently
+</security_considerations>
+
+<best_practices>
+1. Program Architecture
+- Keep instructions atomic and focused
+- Use clear naming conventions
+- Document all public interfaces
+- Implement proper error handling
+
+2. State Management
+- Use space-efficient types
+- Calculate account sizes precisely
+- Document state transitions
+- Implement proper serialization
+
+3. Testing
+- Write comprehensive tests
+- Test edge cases
+- Use proper test fixtures
+- Document test scenarios
+
+4. Development Workflow
+- Use proper git workflow
+- Document changes clearly
+- Review security implications
+- Follow semantic versioning
+</best_practices> 
+
+## dependencies
+anchor-lang = { version = "0.30.1", features = ["init-if-needed"] }
+anchor-spl = { version = "0.30.1", features = ["mint", "token", "metadata"] }

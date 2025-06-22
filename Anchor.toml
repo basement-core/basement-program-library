@@ -1,0 +1,27 @@
+[toolchain]
+package_manager = "yarn"
+
+[features]
+seeds = true
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+basement_core = "basRcvkBuRNUJHxNTqdV5d23PVXHteqBheoRKUFtdbG"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.test.json -t 1000000 tests/**/*.ts"
+bootstrap = "npx tsx scripts/bootstrap.ts"
+
+[test.validator]
+url = "https://api.mainnet-beta.solana.com"
+
+[[test.validator.clone]]
+address = "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr" # memo
