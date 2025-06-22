@@ -1,3 +1,3 @@
 import { PublicKey } from "@solana/web3.js";
-export const PROGRAM_ID = new PublicKey("AUXi5iGNkJHoxxBoeYfz8C9JquJJddPPnjoSvDZCksYF");
+export const PROGRAM_ID = new PublicKey("basRcvkBuRNUJHxNTqdV5d23PVXHteqBheoRKUFtdbG");
 //# sourceMappingURL=constants.js.map

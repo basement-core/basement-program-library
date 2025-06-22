@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/basement_core.json`.
  */
 export type BasementCore = {
-    "address": "AUXi5iGNkJHoxxBoeYfz8C9JquJJddPPnjoSvDZCksYF";
+    "address": "basRcvkBuRNUJHxNTqdV5d23PVXHteqBheoRKUFtdbG";
     "metadata": {
         "name": "basementCore";
         "version": "0.1.0";
