@@ -22,7 +22,7 @@
   "files": [
     "lib"
   ],
-  "gitHead": "69c578ebcf2c8587a764884e48295955f54b1f77",
+  "gitHead": "617b5666a5765dd81c9ac451d85baa9de0f47526",
   "license": "Apache-2.0",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/src/index.js",
