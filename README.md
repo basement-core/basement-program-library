@@ -212,10 +212,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 🔗 Links
 
-- **Website**: [basement.so](https://basement.so)
-- **Documentation**: [docs.basement.so](https://docs.basement.so)
-- **Discord**: [discord.gg/basement](https://discord.gg/basement)
-- **Twitter**: [@basement_so](https://twitter.com/basement_so)
+- **Twitter**: [@basement_so](https://twitter.com/basement_web)
 
 ## 🙏 Acknowledgments
 
