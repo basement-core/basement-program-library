@@ -2,7 +2,6 @@ import { BasementCore } from "@basement-core/idls/lib/types/basement_core";
 import { AnchorProvider, Idl, Program } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { PROGRAM_ID } from "./constants";
-import { basementCoreResolvers } from "./resolvers";
 
 export const init = async (
   provider: AnchorProvider,
@@ -17,7 +16,7 @@ export const init = async (
     idl as BasementCore,
     provider,
     undefined,
-    () => basementCoreResolvers
+    () => undefined
   ) as Program<BasementCore>;
 
   return basement;

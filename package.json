@@ -30,7 +30,6 @@
     "@coral-xyz/anchor": "^0.31.0",
     "@coral-xyz/anchor-cli": "^0.31.0",
     "@coral-xyz/borsh": "^0.2.6",
-    "@helium/anchor-resolvers": "^0.7.6",
     "@helium/spl-utils": "^0.7.17",
     "@metaplex-foundation/js": "^0.20.1",
     "@metaplex-foundation/umi": "^0.9.1",

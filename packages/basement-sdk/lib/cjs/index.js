@@ -19,5 +19,4 @@ __exportStar(require("./constants"), exports);
 var init_1 = require("./init");
 Object.defineProperty(exports, "init", { enumerable: true, get: function () { return init_1.init; } });
 __exportStar(require("./pdas"), exports);
-__exportStar(require("./resolvers"), exports);
 //# sourceMappingURL=index.js.map

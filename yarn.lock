@@ -458,7 +458,7 @@
     js-sha256 "^0.11.0"
     multiformats "^9.6.4"
 
-"@helium/anchor-resolvers@^0.7.17", "@helium/anchor-resolvers@^0.7.6":
+"@helium/anchor-resolvers@^0.7.17":
   version "0.7.17"
   resolved "https://registry.yarnpkg.com/@helium/anchor-resolvers/-/anchor-resolvers-0.7.17.tgz#3404df1190af30f26dd53e477df6f0d6294b9773"
   integrity sha512-F5coBe4NJSFyoc2jLetguKr7mnjmOdHv8aVlflPVXTic6YcqlaaLdJ36JHh2VRVmX+ulWbWKdUNJX65vAkWnNA==

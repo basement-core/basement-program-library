@@ -1,3 +1,2 @@
-import { combineResolvers } from "@helium/anchor-resolvers";
-export const basementCoreResolvers = combineResolvers();
+"use strict";
 //# sourceMappingURL=resolvers.js.map

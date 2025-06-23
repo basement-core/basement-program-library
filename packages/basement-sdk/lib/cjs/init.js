@@ -12,12 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
 const anchor_1 = require("@coral-xyz/anchor");
 const constants_1 = require("./constants");
-const resolvers_1 = require("./resolvers");
 const init = (provider_1, ...args_1) => __awaiter(void 0, [provider_1, ...args_1], void 0, function* (provider, programId = constants_1.PROGRAM_ID, idl) {
     if (!idl) {
         idl = yield anchor_1.Program.fetchIdl(programId, provider);
     }
-    const basement = new anchor_1.Program(idl, provider, undefined, () => resolvers_1.basementCoreResolvers);
+    const basement = new anchor_1.Program(idl, provider, undefined, () => undefined);
     return basement;
 });
 exports.init = init;
