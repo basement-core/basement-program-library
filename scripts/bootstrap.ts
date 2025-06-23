@@ -39,7 +39,7 @@ async function bootstrap() {
   const mint = await createMint(
     provider,
     9,
-    me,
+    MINT_AUTHORITY.publicKey,
     MINT_AUTHORITY.publicKey,
     BNT_MINT
   );
